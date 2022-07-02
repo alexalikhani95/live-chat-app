@@ -18,8 +18,14 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(socket.id);
-}); // io.on will listen for the "connection" event
+  // io.on will listen for the "connection" event
+  console.log(socket.id); // The socket.id of user that just connected
+
+  socket.on("disconnect", () => {
+    // this will run when someone tries to disconnect from the server
+    console.log("User Disconnected", socket.id); // The socket id of user that disconnected
+  });
+});
 
 server.listen(3001, () => {
   console.log("Server Running!");
