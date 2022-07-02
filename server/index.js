@@ -19,7 +19,12 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   // io.on will listen for the "connection" event
-  console.log(socket.id); // The socket.id of user that just connected
+  console.log(`User Connected ${socket.id}`); // The socket.id of user that just connected
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
 
   socket.on("disconnect", () => {
     // this will run when someone tries to disconnect from the server
