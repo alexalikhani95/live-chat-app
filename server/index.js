@@ -26,6 +26,10 @@ io.on("connection", (socket) => {
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
+  socket.on("send_message", (data) => {
+    console.log(data);
+  });
+
   socket.on("disconnect", () => {
     // this will run when someone tries to disconnect from the server
     console.log("User Disconnected", socket.id); // The socket id of user that disconnected

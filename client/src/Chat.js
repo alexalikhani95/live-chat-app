@@ -3,6 +3,22 @@ import React, { useState } from "react";
 const Chat = ({ socket, username, room }) => {
   const [currentMessage, setCurrentMessage] = useState("");
 
+  const sendMessage = async () => {
+    if (currentMessage !== "") {
+      const messageData = {
+        room: room,
+        author: username,
+        message: currentMessage,
+        time:
+          new Date(Date.now()).getHours() + // To get the date and time that the message was sent
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+
+      await socket.emit("send_message", messageData);
+    }
+  };
+
   return (
     <div>
       <div className="chat-header">
@@ -15,7 +31,7 @@ const Chat = ({ socket, username, room }) => {
           placeholder="Message..."
           onChange={(event) => setCurrentMessage(event.target.value)}
         />
-        <button>&#9658;</button>
+        <button onClick={sendMessage}>&#9658;</button>
       </div>
     </div>
   );
