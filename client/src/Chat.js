@@ -40,9 +40,13 @@ const Chat = ({ socket, username, room }) => {
         />
         <button onClick={sendMessage}>&#9658;</button>
       </div>
-      <div className="chat-body">
+      <div className="chat-body" style={{ marginTop: 10 }}>
         {messageList.map((messageContent) => {
-          return <p key={messageContent.message}>{messageContent.message}</p>;
+          return (
+            <div className="individual-message">
+              <p key={messageContent.message}>{messageContent.message}</p>
+            </div>
+          );
         })}
       </div>
     </div>

@@ -25,6 +25,10 @@
   flex-direction: column;
 }
 
+.individual-message {
+  border-top: 1px solid grey;
+}
+
 .chat-header {
   background-color: salmon;
 }
