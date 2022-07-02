@@ -26,12 +26,11 @@ const Chat = ({ socket, username, room }) => {
   }, [socket]);
 
   return (
-    <div>
+    <div className="chat-window">
       <div className="chat-header">
         <p>Live Chat</p>
       </div>
-      <div className="chat-body"></div>
-      <div className="chat-footer">
+      <div className="chat-message">
         <input
           type="text"
           placeholder="Message..."
@@ -39,6 +38,7 @@ const Chat = ({ socket, username, room }) => {
         />
         <button onClick={sendMessage}>&#9658;</button>
       </div>
+      <div className="chat-body"></div>
     </div>
   );
 };
