@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Paper from "@mui/material/Paper";
 
 const Chat = ({ socket, username, room }) => {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -28,28 +32,31 @@ const Chat = ({ socket, username, room }) => {
   }, [socket]);
 
   return (
-    <div className="chat-window">
+    <Box className="chat-window">
       <div className="chat-header">
-        <p>Live Chat</p>
+        <h3>Live Chat</h3>
       </div>
       <div className="chat-message">
-        <input
-          type="text"
+        <TextField
           placeholder="Message..."
+          sx={{ marginBottom: 1 }}
           onChange={(event) => setCurrentMessage(event.target.value)}
         />
-        <button onClick={sendMessage}>&#9658;</button>
+        <Button variant="contained" onClick={sendMessage}>
+          Send Message
+        </Button>
       </div>
       <div className="chat-body" style={{ marginTop: 10 }}>
         {messageList.map((messageContent) => {
           return (
-            <div className="individual-message">
+            <Paper elevation={2}>
+              <p style={{ fontWeight: "bold" }}>{username}:</p>{" "}
               <p key={messageContent.message}>{messageContent.message}</p>
-            </div>
+            </Paper>
           );
         })}
       </div>
-    </div>
+    </Box>
   );
 };
 
