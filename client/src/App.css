@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.join-chat {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
 }
 
 .chat-container {

@@ -2,6 +2,8 @@ import "./App.css";
 import io from "socket.io-client";
 import { useState } from "react";
 import Chat from "./Chat";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 const socket = io.connect("http://localhost:3001"); // connect to the socket.io server on the backend
 
@@ -20,20 +22,22 @@ function App() {
   return (
     <div className="App">
       {!showChat ? (
-        <>
+        <div className="join-chat">
           <h3>Join a Chat</h3>
-          <input
-            type="text"
+          <TextField
             placeholder="Name"
             onChange={(event) => setUsername(event.target.value)}
+            sx={{ marginBottom: 1 }}
           />
-          <input
-            type="text"
+          <TextField
             placeholder="Room ID"
             onChange={(event) => setRoom(event.target.value)}
+            sx={{ marginBottom: 1 }}
           />
-          <button onClick={joinRoom}>Join a Room</button>
-        </>
+          <Button variant="contained" onClick={joinRoom}>
+            Join a Room
+          </Button>
+        </div>
       ) : (
         <div className="chat-container">
           <Chat socket={socket} username={username} room={room} />
